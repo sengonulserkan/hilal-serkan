@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Hilal &amp; Serkan — Düğün Davetiyesi</title>
+    <meta name="description" content="Hilal & Serkan'ın mutluluğuna davetlisiniz. Kına 28 Ağustos 2026 İstanbul, Düğün 5 Eylül 2026 Konya. Katılım durumunuzu buradan bildirebilirsiniz.">
+    <meta name="theme-color" content="#F6F4EE">
+
+    <!-- WhatsApp / sosyal medya önizlemesi.
+         ⚠️ Siteyi yayına aldıktan sonra aşağıdaki og:image adresini
+         KENDİ TAM ADRESİNİZLE değiştirin, örn:
+         https://hilalveserkan.netlify.app/img/og.jpg
+         WhatsApp göreli adresten görsel çekmez; tam adres şart. -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hilal & Serkan — Mutluluğumuza Davetlisiniz">
+    <meta property="og:description" content="Kına: 28 Ağustos 2026 · İstanbul — Düğün: 5 Eylül 2026 · Konya. Katılım durumunuzu bildirmek için tıklayın.">
+    <meta property="og:image" content="img/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Davetiyeden alınan çiçek motifleri -->
+    <img src="img/flower-top.png" alt="" class="petal petal-top" aria-hidden="true">
+    <img src="img/flower-bottom.png" alt="" class="petal petal-bottom" aria-hidden="true">
+
+    <main class="page">
+
+        <!-- ============ DAVETİYE ============ -->
+        <section class="invitation reveal">
+            <p class="eyebrow">Mutluluğumuza Davetlisiniz</p>
+
+            <h1 class="couple">Hilal <span class="amp">&amp;</span> Serkan</h1>
+
+            <div class="parents">
+                <div class="parent">
+                    <span>Gülçin &amp; Adem</span>
+                    <span>Sarıoğlu</span>
+                </div>
+                <div class="parent-divider" aria-hidden="true"></div>
+                <div class="parent">
+                    <span>Şengül &amp; Mehmet</span>
+                    <span>Şengönül</span>
+                </div>
+            </div>
+
+            <div class="events">
+                <!-- KINA -->
+                <article class="event">
+                    <h2 class="event-name">Kına</h2>
+                    <p class="event-date"><span>28</span><i>|</i><span>08</span><i>|</i><span>2026</span></p>
+                    <p class="event-when">Cuma <i>|</i> 19.00</p>
+                    <p class="event-venue">Triya İstanbul</p>
+                    <p class="event-city">Kartal / İstanbul</p>
+                    <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Triya+%C4%B0stanbul+Kartal" target="_blank" rel="noopener">Yol tarifi</a>
+                </article>
+
+                <div class="event-divider" aria-hidden="true"></div>
+
+                <!-- DÜĞÜN -->
+                <article class="event">
+                    <h2 class="event-name">Düğün</h2>
+                    <p class="event-date"><span>05</span><i>|</i><span>09</span><i>|</i><span>2026</span></p>
+                    <p class="event-when">Cumartesi <i>|</i> 19.00</p>
+                    <p class="event-venue">Diltaş Düğün ve<br>Kongre Merkezi</p>
+                    <p class="event-city">Meram / Konya</p>
+                    <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Dilta%C5%9F+D%C3%BC%C4%9F%C3%BCn+ve+Kongre+Merkezi+Meram+Konya" target="_blank" rel="noopener">Yol tarifi</a>
+                </article>
+            </div>
+
+            <p class="note">
+                Not: 05.09.2026 Cumartesi günü saat 17.00’de
+                damat evinden konvoy hareket edecektir.
+            </p>
+        </section>
+
+        <!-- ============ GERİ SAYIM ============ -->
+        <section class="countdown reveal" id="countdown">
+            <p class="countdown-label">Düğüne kalan süre</p>
+            <div class="countdown-grid">
+                <div class="cd-item"><b id="cdDays">—</b><span>Gün</span></div>
+                <div class="cd-item"><b id="cdHours">—</b><span>Saat</span></div>
+                <div class="cd-item"><b id="cdMins">—</b><span>Dakika</span></div>
+                <div class="cd-item"><b id="cdSecs">—</b><span>Saniye</span></div>
+            </div>
+        </section>
+
+        <!-- ============ RSVP FORMU ============ -->
+        <section class="rsvp reveal" id="rsvp">
+            <div class="ornament" aria-hidden="true">
+                <span></span><i>❦</i><span></span>
+            </div>
+
+            <h2 class="rsvp-title">Katılım Durumu</h2>
+            <p class="rsvp-sub">Sizi aramızda görebilmek bizim için çok değerli.<br>Lütfen katılım durumunuzu bildirin.</p>
+
+            <form id="rsvpForm" novalidate>
+
+                <!-- Ad Soyad -->
+                <div class="field">
+                    <label for="guestName">Adınız Soyadınız</label>
+                    <input type="text" id="guestName" name="name" autocomplete="name"
+                        placeholder="Örn: Ayşe Yılmaz" required>
+                </div>
+
+                <!-- Telefon -->
+                <div class="field">
+                    <label for="guestPhone">Telefon <em>(isteğe bağlı)</em></label>
+                    <input type="tel" id="guestPhone" name="phone" autocomplete="tel"
+                        inputmode="tel" placeholder="05__ ___ __ __">
+                </div>
+
+                <!-- KINA -->
+                <fieldset class="q-block" id="kinaBlock">
+                    <legend>
+                        <span class="q-title">Kına Gecesi</span>
+                        <span class="q-meta">28 Ağustos 2026 · Cuma · İstanbul</span>
+                    </legend>
+                    <div class="choices" role="radiogroup" aria-label="Kına katılım durumu">
+                        <label class="choice">
+                            <input type="radio" name="kina" value="Katılıyor" required>
+                            <span class="choice-box"><b>Katılıyorum</b></span>
+                        </label>
+                        <label class="choice">
+                            <input type="radio" name="kina" value="Katılmıyor">
+                            <span class="choice-box no"><b>Katılamıyorum</b></span>
+                        </label>
+                    </div>
+                    <div class="counter" id="kinaCounter" hidden>
+                        <span class="counter-label">Toplam kaç kişi?</span>
+                        <div class="stepper">
+                            <button type="button" class="step" data-step="-1" data-target="kinaCount" aria-label="Azalt">−</button>
+                            <output id="kinaCount" data-value="2">2</output>
+                            <button type="button" class="step" data-step="1" data-target="kinaCount" aria-label="Artır">+</button>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- DÜĞÜN -->
+                <fieldset class="q-block" id="dugunBlock">
+                    <legend>
+                        <span class="q-title">Düğün</span>
+                        <span class="q-meta">5 Eylül 2026 · Cumartesi · Konya</span>
+                    </legend>
+                    <div class="choices" role="radiogroup" aria-label="Düğün katılım durumu">
+                        <label class="choice">
+                            <input type="radio" name="dugun" value="Katılıyor" required>
+                            <span class="choice-box"><b>Katılıyorum</b></span>
+                        </label>
+                        <label class="choice">
+                            <input type="radio" name="dugun" value="Katılmıyor">
+                            <span class="choice-box no"><b>Katılamıyorum</b></span>
+                        </label>
+                    </div>
+                    <div class="counter" id="dugunCounter" hidden>
+                        <span class="counter-label">Toplam kaç kişi?</span>
+                        <div class="stepper">
+                            <button type="button" class="step" data-step="-1" data-target="dugunCount" aria-label="Azalt">−</button>
+                            <output id="dugunCount" data-value="2">2</output>
+                            <button type="button" class="step" data-step="1" data-target="dugunCount" aria-label="Artır">+</button>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <p class="form-error" id="formError" role="alert" hidden></p>
+
+                <button type="submit" class="submit" id="submitBtn">
+                    <span class="submit-text">Gönder</span>
+                    <span class="spinner" aria-hidden="true"></span>
+                </button>
+
+                <p class="privacy">Yanıtınız yalnızca Hilal &amp; Serkan tarafından görülür.</p>
+            </form>
+
+            <!-- Teşekkür ekranı -->
+            <div class="thanks" id="thanks" hidden>
+                <div class="thanks-mark" aria-hidden="true">
+                    <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l8 8 15-16"/></svg>
+                </div>
+                <h3 id="thanksTitle">Teşekkür ederiz!</h3>
+                <p id="thanksText"></p>
+
+                <div class="calendar-zone" id="calendarZone" hidden>
+                    <p class="calendar-hint">Tarihi unutmamak için takviminize ekleyin</p>
+                    <div class="calendar-buttons" id="calendarButtons"></div>
+                </div>
+
+                <button type="button" class="link-btn" id="editBtn">Yanıtımı düzenle</button>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p class="footer-names">Hilal &amp; Serkan</p>
+            <a class="footer-link" href="img/davetiye.jpg" target="_blank" rel="noopener">Davetiyeyi görüntüle</a>
+        </footer>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

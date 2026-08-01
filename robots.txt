@@ -1,0 +1,4 @@
+# Bu davetiye yalnızca linki gönderilen kişiler içindir.
+# Arama motorlarında çıkmasını istemiyoruz.
+User-agent: *
+Disallow: /
