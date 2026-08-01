@@ -755,6 +755,13 @@ body {
     fill: var(--gold);
 }
 
+.cal-note {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+}
+
 .link-btn {
     margin-top: 26px;
     padding: 8px 4px;

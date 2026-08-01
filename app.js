@@ -227,6 +227,22 @@ async function send(payload) {
 /* ============================================================
    TEŞEKKÜR EKRANI + TAKVİME EKLE
    ============================================================ */
+/**
+ * Takvim dosyasının adresi.
+ *
+ * iPhone/iPad/Mac'te "webcal://" kullanıyoruz. Sebebi: WhatsApp,
+ * Instagram gibi uygulamaların içindeki tarayıcı, https ile biten bir
+ * .ics dosyasını indirip orada bırakıyor — Takvim'e devretmiyor, yani
+ * kullanıcı açısından "hiçbir şey olmuyor". webcal:// ise tarayıcıyı
+ * atlayıp doğrudan işletim sistemine gider, o da Takvim'i açar.
+ * Diğer cihazlarda normal https adresi daha iyi çalışıyor.
+ */
+function icsUrl(ev) {
+    const tam = new URL(ev.ics, location.href).href;
+    const apple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
+    return apple ? tam.replace(/^https?:/, 'webcal:') : tam;
+}
+
 function gcalUrl(ev) {
     const p = new URLSearchParams({
         action: 'TEMPLATE',
@@ -271,12 +287,12 @@ function showThanks(data, scroll) {
                 <h4>${ev.label}</h4>
                 <p>${ev.dateText}<br>${ev.venue}</p>
                 <div class="cal-links">
-                    <!-- "download" YOK: iPhone'da dosyayı indirmek yerine
-                         doğrudan Takvim'in "Etkinlik Ekle" ekranını açar -->
-                    <a href="${ev.ics}">${ICON_APPLE} Apple Takvim</a>
+                    <!-- "download" YOK: dosyayı indirmek yerine Takvim'e devreder -->
+                    <a href="${icsUrl(ev)}">${ICON_APPLE} Apple Takvim</a>
                     <a href="${gcalUrl(ev)}" target="_blank" rel="noopener">${ICON_GOOGLE} Google Takvim</a>
                 </div>
-            </div>`).join('');
+            </div>`).join('') +
+            `<p class="cal-note">Düğme çalışmazsa Google Takvim'i deneyin.</p>`;
     }
 
     // Sadece yeni gönderimde kaydır. Daha önce yanıt vermiş biri linki
