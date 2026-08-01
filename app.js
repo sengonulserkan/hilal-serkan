@@ -9,7 +9,7 @@
    ekranlar görünür, ancak yanıt hiçbir yere kaydedilmez.
    ============================================================ */
 
-const SCRIPT_URL = '';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTQzRyH2CdDQd3jbx_Fhrvs9rEpVGmPbWE7Rh68O-fxqU53H-dW8B7XgKhLF0feX5p/exec';
 
 /* ============================================================ */
 
