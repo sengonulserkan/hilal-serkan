@@ -228,19 +228,30 @@ async function send(payload) {
    TEŞEKKÜR EKRANI + TAKVİME EKLE
    ============================================================ */
 /**
- * Takvim dosyasının adresi.
+ * Takvim dosyasının adresi. İki farklı yol var, çünkü hiçbiri
+ * her yerde çalışmıyor:
  *
- * iPhone/iPad/Mac'te "webcal://" kullanıyoruz. Sebebi: WhatsApp,
- * Instagram gibi uygulamaların içindeki tarayıcı, https ile biten bir
- * .ics dosyasını indirip orada bırakıyor — Takvim'e devretmiyor, yani
- * kullanıcı açısından "hiçbir şey olmuyor". webcal:// ise tarayıcıyı
- * atlayıp doğrudan işletim sistemine gider, o da Takvim'i açar.
- * Diğer cihazlarda normal https adresi daha iyi çalışıyor.
+ *  https://…/kina.ics  → Safari'de tek dokunuşla temiz "Etkinlik Ekle"
+ *                        ekranı açar. EN İYİSİ BU. Ama WhatsApp gibi
+ *                        uygulamaların içindeki tarayıcıda dosyayı
+ *                        indirip bırakır, Takvim'e devretmez.
+ *
+ *  webcal://…/kina.ics → Tarayıcıyı atlayıp doğrudan işletim sistemine
+ *                        gider, her yerde çalışır. Ama iOS "Takvim
+ *                        Aboneliği Ekle" ekranını açar: URL görünür,
+ *                        klavye çıkar, "Bul" + "Abone Ol" gerekir.
+ *                        Çalışır ama yaşlı davetliler için karışık.
+ *
+ * Bu yüzden: gerçek Safari'ye https, uygulama içi tarayıcıya webcal.
+ * Ayrım: gerçek Safari'nin kimliğinde "Safari/" geçer, uygulama içi
+ * tarayıcıda (WKWebView) geçmez.
  */
 function icsUrl(ev) {
     const tam = new URL(ev.ics, location.href).href;
-    const apple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
-    return apple ? tam.replace(/^https?:/, 'webcal:') : tam;
+    const ua = navigator.userAgent;
+    const apple = /iPad|iPhone|iPod|Macintosh/.test(ua);
+    const uygulamaIci = apple && !/Safari\//.test(ua);
+    return uygulamaIci ? tam.replace(/^https?:/, 'webcal:') : tam;
 }
 
 function gcalUrl(ev) {
@@ -292,7 +303,7 @@ function showThanks(data, scroll) {
                     <a href="${gcalUrl(ev)}" target="_blank" rel="noopener">${ICON_GOOGLE} Google Takvim</a>
                 </div>
             </div>`).join('') +
-            `<p class="cal-note">Düğme çalışmazsa Google Takvim'i deneyin.</p>`;
+            `<p class="cal-note">Düğme çalışmazsa Google Takvim'i deneyin —<br>o her cihazda açılır.</p>`;
     }
 
     // Sadece yeni gönderimde kaydır. Daha önce yanıt vermiş biri linki
