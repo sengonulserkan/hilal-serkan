@@ -755,6 +755,25 @@ body {
     fill: var(--gold);
 }
 
+.note-address {
+    display: block;
+    margin-top: .55em;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: .02em;
+}
+
+.note-address .map-link {
+    display: block;
+    margin-top: .3em;
+}
+
+/* Konvoy kartı, düğün kartından görsel olarak ayrılsın */
+.cal-card.konvoy {
+    background: var(--gold-tint);
+    border-style: dashed;
+}
+
 .cal-note {
     margin: 14px 0 0;
     text-align: center;

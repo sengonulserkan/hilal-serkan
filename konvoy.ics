@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Hilal ve Serkan//Dugun 2026//TR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Hilal & Serkan — Konvoy
+X-WR-TIMEZONE:Europe/Istanbul
+BEGIN:VEVENT
+UID:konvoy-20260905@hilalserkan2026
+DTSTAMP:20260801T000000Z
+DTSTART:20260905T140000Z
+DTEND:20260905T160000Z
+SUMMARY:Hilal & Serkan — Konvoy Hareket
+LOCATION:Yaka Tower Sitesi\, Konya
+DESCRIPTION:Damat evinden konvoy hareket saati: 17.00.\nAdres: Yaka Tower S
+ itesi\, Konya.\n\nKonvoy\, Diltaş Düğün ve Kongre Merkezi'ne (Meram / 
+ Konya) gidecektir.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Yarın düğün — konvoy 17.00'de Yaka Tower Sitesi'nden
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Konvoy 1 saat sonra hareket ediyor (Yaka Tower Sitesi)
+END:VALARM
+END:VEVENT
+END:VCALENDAR

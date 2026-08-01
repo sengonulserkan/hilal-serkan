@@ -20,7 +20,7 @@ const EVENTS = {
         locative: 'kına gecemizde', // "Sizi … 3 kişi olarak ağırlamak için…"
         title: 'Hilal & Serkan — Kına Gecesi',
         dateText: '28 Ağustos 2026 · Cuma · 19.00',
-        venue: 'Triya İstanbul, Kartal / İstanbul',
+        venue: 'Triya İstanbul, Kartal, İstanbul',
         // Europe/Istanbul yıl boyu UTC+3 → 19.00 yerel = 16:00 UTC
         startUTC: '20260828T160000Z',
         endUTC: '20260828T210000Z',
@@ -33,12 +33,28 @@ const EVENTS = {
         locative: 'düğünümüzde',
         title: 'Hilal & Serkan — Düğün',
         dateText: '5 Eylül 2026 · Cumartesi · 19.00',
-        venue: 'Diltaş Düğün ve Kongre Merkezi, Meram / Konya',
+        venue: 'Diltaş Düğün ve Kongre Merkezi, Meram, Konya',
         startUTC: '20260905T160000Z',
         endUTC: '20260905T210000Z',
-        details: 'Hilal & Serkan\'ın düğün töreni. Not: 05.09.2026 Cumartesi günü saat 17.00\'de damat evinden konvoy hareket edecektir.',
+        details: 'Hilal & Serkan\'ın düğün töreni. Saat 19.00.\n\nNOT: Aynı gün saat 17.00\'de damat evinden (Yaka Tower Sitesi, Konya) konvoy hareket edecektir.',
         ics: 'dugun.ics'
     }
+};
+
+/**
+ * Konvoy ayrı bir takvim etkinliği. Düğün açıklamasının içinde de yazıyor
+ * ama orada gözden kaçıyor; ayrı etkinlik olarak kendi saati ve adresiyle
+ * takvimde görünsün diye. Yalnızca düğüne katılanlara gösterilir.
+ */
+const KONVOY = {
+    label: 'Konvoy — Damat evinden hareket',
+    title: 'Hilal & Serkan — Konvoy Hareket',
+    dateText: '5 Eylül 2026 · Cumartesi · 17.00',
+    venue: 'Yaka Tower Sitesi, Konya',
+    startUTC: '20260905T140000Z',
+    endUTC: '20260905T160000Z',
+    details: 'Damat evinden konvoy hareket saati: 17.00.\nAdres: Yaka Tower Sitesi, Konya.\n\nKonvoy, Diltaş Düğün ve Kongre Merkezi\'ne (Meram / Konya) gidecektir.',
+    ics: 'konvoy.ics'
 };
 
 const WEDDING_DATE = new Date('2026-09-05T19:00:00+03:00');
@@ -292,9 +308,15 @@ function showThanks(data, scroll) {
         $('thanksText').textContent =
             `Yanıtınız bize ulaştı ${firstName}. Sizi ${parca} olarak ağırlamak için sabırsızlanıyoruz.`;
 
+        // Düğüne geliyorsa konvoyu da ayrı bir kart olarak sun
+        const kartlar = coming.slice();
+        if (data.dugun === 'Katılıyor') {
+            kartlar.splice(kartlar.indexOf(EVENTS.dugun), 0, KONVOY);
+        }
+
         $('calendarZone').hidden = false;
-        $('calendarButtons').innerHTML = coming.map((ev) => `
-            <div class="cal-card">
+        $('calendarButtons').innerHTML = kartlar.map((ev) => `
+            <div class="cal-card${ev === KONVOY ? ' konvoy' : ''}">
                 <h4>${ev.label}</h4>
                 <p>${ev.dateText}<br>${ev.venue}</p>
                 <div class="cal-links">
